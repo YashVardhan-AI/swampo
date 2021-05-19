@@ -45,7 +45,7 @@ def git_project_profile():
         run('git status')
         cli.echo("""'swampo git add-all' -- Stage all files
 'swampo git add-file FILE        -- Stage particular files""")
-    except CalledProcessError:
+    except sb.CalledProcessError:
         cli.echo('OOPS! Something went wrong!')
 
 def gitCommit(message):
@@ -68,18 +68,31 @@ def create_ssh_key(email):
         cli.echo("An SSH Key was generated in '~/.ssh/id_ed25519.pub'. Now you can add the key in Github")
 
     
-def set_remote(name, branch, link):
+def set_remote(name, link):
     try:
-        run('git remote add {name} {link}')
+        run(f'git remote add {name} {link}')
     except sb.CalledProcessError:
         cli.echo('Something went wrong. Did you type a valid link?')
 
-def git_push(remote, branch):
-    try:
-        run(f'git push -u {remote} {branch}')
-    except sb.CalledProcessError:
-        cli.echo('Something went wrong... ')
+def git_push(inp):
+    if inp == 1:
+        try:
+            rem = cli.prompt('Enter the remote variable')
+            branch = cli.prompt('Enter the branch')
+            run(f'git push -u {remote} {branch}')
+        except sb.CalledProcessError:
+            cli.echo('Something went wrong... ')
 
+    elif inp == 2:
+        try:
+            run('git push')
+        except sb.CalledProcessError:
+            echo('Something went wrong...')
+
+    else:
+        cli.echo('Wrong Input!')
+
+        
 def gitadd():
     try:
         run('git add .')
@@ -90,7 +103,7 @@ def gitaddf(arg):
     try:
         run(f'git add {arg}')
         cli.echo('Files were added successfully!')
-    except sb.CalledProcessError:
+    except Exception as e:
         cli.echo('Something went wrong!')
 
 

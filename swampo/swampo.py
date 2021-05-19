@@ -41,9 +41,20 @@ def settle():
     msg = click.prompt('Enter your Commit Message: ')
     gitCommit(msg)
 
+@git.command('set-repo', help='')
+def set_repo():
+    name= cli.prompt('Enter a variable for your repository link: ')
+    link= cli.prompt('Enter the link of your repository: ')
+    set_remote(name, link)
+
+
 @git.command('publish', help='Publish your repository to Github')
 def push_repo():
-    pass
+    inp = cli.prompt('''How to you want to publish?
+1. Publish to a specific remote and branch
+2. Publish directly to upstream repo''')
+    git_push(int(inp))
+    
 
 @main.command()
 def config():
