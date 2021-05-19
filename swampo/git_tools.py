@@ -44,7 +44,7 @@ def git_project_profile():
     try:
         run('git status')
         cli.echo("""'swampo git add-all' -- Stage all files
-    'swampo git add-file FILE        -- Stage particular files""")
+'swampo git add-file FILE        -- Stage particular files""")
     except CalledProcessError:
         cli.echo('OOPS! Something went wrong!')
 

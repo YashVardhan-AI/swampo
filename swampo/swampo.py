@@ -27,13 +27,23 @@ def git_add():
     gitadd()
 
 @git.command('add-file', help= ('Add your preferred files'))
-def git_add_file(*args):
-    for arg in args:
+@click.argument('files', nargs=-1)
+def git_add_file(files):
+    for arg in files:
         gitaddf(arg)
     
 @git.command(help='See the status of your profile')
 def profile():
     git_project_profile()
+
+@git.command(help='Commit the staged files')
+def settle():
+    msg = click.prompt('Enter your Commit Message: ')
+    gitCommit(msg)
+
+@git.command('publish', help='Publish your repository to Github')
+def push_repo():
+    pass
 
 @main.command()
 def config():
