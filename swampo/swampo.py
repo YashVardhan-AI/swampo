@@ -65,6 +65,18 @@ def start():
     pmt = cli.prompt("Enter the directory you want your project to be started in (enter 'current' to use the current directory") 
     git_init(pmt)
 
+@git.command(help='Copy a repository')
+def copy():
+    pmt = cli.prompt("Enter the directory you want the repo to be copied in (enter 'current' to use the current directory") 
+    pmt2 = cli.prompt('Enter the repository link')
+    git_clone(pmt2, pmt)
+
+@git.command(help='Issue a published project')
+def issue():
+    mt = cli.prompt("Enter the directory you want the repo to be copied in (enter 'current' to use the current directory") 
+    pmt2 = cli.prompt('Enter the repository link')
+    git_pull(pmt2, pmt)
+
 @main.command()
 def config():
     '''Helps to configure your profile for Swampo'''

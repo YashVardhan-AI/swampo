@@ -36,9 +36,15 @@ def git_init(directory):
 
 def git_clone(link, directory):
     if 'current' in directory:
-        strun(f'git clone {link}')
+        run(f'git clone {link}')
     else:
-        strun(f'cd; cd {directory}; git clone {link}')
+        run(f'cd; cd {directory}; git clone {link}')
+
+def git_pull(link, directory):
+    if 'current' in directory:
+        run(f'git pull {link}')
+    else:
+        run(f'cd; cd {directory}; git pull {link}')
 
 def git_project_profile():
     try:
