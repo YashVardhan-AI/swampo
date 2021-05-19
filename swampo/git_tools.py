@@ -25,7 +25,7 @@ def checkGitConfig(inputname): # After inputname you need to add a '\n' string
             else:
                 print('Invalid Input')
 
-def git_init(directory, projectname):
+def git_init(directory):
     if 'current' in directory:
         run('git init')
         
@@ -91,7 +91,6 @@ def git_push(inp):
 
     else:
         cli.echo('Wrong Input!')
-
         
 def gitadd():
     try:

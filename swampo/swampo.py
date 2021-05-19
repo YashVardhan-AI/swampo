@@ -55,11 +55,19 @@ def push_repo():
 2. Publish directly to upstream repo''')
     git_push(int(inp))
     
+@git.command('get-ssh', help= 'Get an SSH Key easily')
+def ssh_get():
+    pmt = cli.prompt('Enter your git-linked mail')
+    create_ssh_key(pmt)
+
+@git.command(help='Make an empty repository')
+def start():
+    pmt = cli.prompt("Enter the directory you want your project to be started in (enter 'current' to use the current directory") 
+    git_init(pmt)
 
 @main.command()
 def config():
     '''Helps to configure your profile for Swampo'''
-
 
 @main.command()
 def build():
