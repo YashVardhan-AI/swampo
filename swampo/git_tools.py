@@ -89,6 +89,7 @@ def gitadd():
 def gitaddf(arg):
     try:
         run(f'git add {arg}')
+        cli.echo('Files were added successfully!')
     except sb.CalledProcessError:
         cli.echo('Something went wrong!')
 
